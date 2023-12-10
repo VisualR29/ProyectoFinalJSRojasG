@@ -1,0 +1,13 @@
+*{
+padding: 20px;
+margin: 0px;
+}
+
+body{
+    background-color: rgb(51, 16, 42);
+}
+
+h1, h2{
+    color: antiquewhite;
+    text-align: center;
+}
