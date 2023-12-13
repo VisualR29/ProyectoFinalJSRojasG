@@ -1,25 +1,88 @@
-function Task(id, task, priority) {
+//Tarea como Objeto
+class Task{
+    id;
+    task;
+    priority;
+    date;
+
+
+    constructor(id, task, priority, date) {
     this.id = id;
     this.task = task;
     this.priority = priority;
+    this.date = date;
+    }
 }
 
-let activate = true
+//Variables globales
+
 let taskList = [];
-let maxPriority = 0;
-let opc = 0;
-let id = 0;
+let id = 1;
+
+//Funciones de apoyo
+
+function getTaskList() {
+    taskList = JSON.parse(localStorage.getItem('taskList'));
+    id = JSON.parse(localStorage.getItem('id'));
+}
+
+function saveTaskList() {
+    localStorage.setItem('taskList', JSON.stringify(taskList));
+    localStorage.setItem('id', JSON.stringify(id));
+}
+
+function comparateByPriority(elementA, elementB) {
+    return elementB.priority - elementA.priority;
+}
+
+function comparateByDate(elementA, elementB) {
+    return elementB.date - elementA.date;
+}
+
+//Llamar al localstorage
+
+getTaskList();
+
+//Funciones
+
+//Funciones NavBar
+function createList() {
+    taskList = [];
+    id = 1;
+    saveTaskList();
+    showList();
+}
+
+function loadList() {
+    getTaskList();
+    taskList === null && (taskList = []);
+    showList();
+}
+
+//Funciones botones
 
 function addTask() {
-    let taskTask = prompt("Ingrese la tarea a agregar: ");
-    let priorityTask = +prompt("Ingrese la prioridad de la tarea (1 del al 10, 10 siendo lo más importante)");
-    let idTask = id + 1
-    const newTask = new Task(idTask, taskTask, priorityTask);
-    taskList.push(newTask);
-    id += 1;
-    if (priorityTask > maxPriority) {
-        maxPriority = priorityTask;
+    let taskTask = document.getElementById('task').value;
+    let priorityTask = document.getElementById('priority').value;
+    priorityTask = parseInt(priorityTask);
+    let date = document.getElementById('date').value;
+    date = new Date(date);
+    date = date.toLocaleDateString();
+    let idTask = id;
+    taskList === null && (taskList = []);
+    if (taskTask && priorityTask >= 1 && priorityTask <= 10 && date) {
+        let newTask = new Task(idTask, taskTask, priorityTask, date);
+        taskList.push(newTask);
+        id += 1;
+        saveTaskList();
+    } else {
+        taskTask === '' && alert('Falta agrega el nombre de la tarea');
+        priorityTask > 10 && alert('Excediste el valor de prioridad');
+        priorityTask < 1 && alert('Valor incorrecto para prioridad');
+        priorityTask == '' && alert('Valor incorrecto para prioridad');
+        date === '' && alert('No olvides agregar la fecha');
     }
+    showList();
 }
 
 function deleteTask() {
@@ -31,54 +94,89 @@ function deleteTask() {
         alert("No se encontro tarea a eliminar");
     } else {
         alert("Tarea eliminada!");
+        id = 1;
+        newTaskList.forEach(element => {
+            element.id = id;
+            id++;
+        });
     }
     taskList = newTaskList;
+    saveTaskList();
+    showList();
 }
 
 function showList() {
-    let answer = ``
+    const answer = document.getElementById('list');  
+    answer.innerHTML = ``;
     taskList.forEach(element => {
-        let idNumber = element.id;
-        let task = element.task;
-        let priority = element.priority;
-        let elementAnswer = `${idNumber}: ${task}, prioridad de ${priority}\n`;
-        answer += elementAnswer;
+        answer.innerHTML = answer.innerHTML +
+            `<tr>
+                <th>${element.id}</th>
+                <th>${element.task}</th>
+                <th>${element.priority}</th>
+                <th>${element.date}</th>
+            </tr>
+            `;
     });
-    alert(`Lista de tareas:\n${answer}`);
-}
-
-function comparateByPriority(elementA, elementB) {
-    return elementB.priority - elementA.priority;
 }
 
 function showByPriority() {
-    let answerPriority = ``;
+    const answer = document.getElementById('list');
     let taskListPriority = taskList.slice();
     taskListPriority.sort(comparateByPriority);
-    
+    answer.innerHTML = ``;
     taskListPriority.forEach(element => {
-        let idNumber = element.id;
-        let task = element.task;
-        let priority = element.priority;
-        let elementAnswer = `${idNumber}: ${task}, prioridad de ${priority}\n`;
-        answerPriority += elementAnswer;
+        answer.innerHTML = answer.innerHTML +
+        `<tr>
+        <th>${element.id}</th>
+        <th>${element.task}</th>
+        <th>${element.priority}</th>
+        <th>${element.date}</th>
+        </tr>
+        `;
     });
-    alert(`Lista de tareas ordenada por prioridad:\n${answerPriority}`);
+}
+
+function showByDate() {
+    const answer = document.getElementById('list');
+    let taskListDate = taskList.slice();
+    taskListDate.sort(comparateByDate);
+    answer.innerHTML = ``;
+    taskListDate.forEach(element => {
+        answer.innerHTML = answer.innerHTML +
+            `<tr>
+                <th>${element.id}</th>
+                <th>${element.task}</th>
+                <th>${element.priority}</th>
+                <th>${element.date}</th>
+            </tr>
+            `;
+    });
 }
 
 //Si lees esto, te has ganado un cafe ☕☕☕, Disfrutalo!!!
 
-while (activate) {
-    opc = +prompt("Lista de tareas!\nIngrese el número de la opción\n1: Agregar tarea\n2: Eliminar tarea\n3: Ver la lista de tareas\n4: Mostrar la lista por orden de prioridad\n5: Cerrar la lista de tareas")
-    if (opc == 1) {
-        addTask();
-    } else if (opc == 2) {
-        deleteTask();
-    } else if (opc == 3) {
-        showList();
-    } else if (opc == 4) {
-        showByPriority();
-    } else {
-        activate = false;
-    }
-}
+//Funcionalidad de botones
+
+//Botones NavBar
+
+const botonCreateList = document.getElementById('createList');
+botonCreateList.addEventListener('click', createList);
+
+const botonLoadList = document.getElementById('loadList');
+botonLoadList.addEventListener('click', loadList);
+
+const botonAddTask = document.getElementById('addTask');
+botonAddTask.addEventListener('click', addTask);
+
+const botonDeleteTask = document.getElementById('deleteTask');
+botonDeleteTask.addEventListener('click', deleteTask);
+
+const botonShowList = document.getElementById('showList');
+botonShowList.addEventListener('click', showList);
+
+const botonShowByPriority = document.getElementById('showByPriority');
+botonShowByPriority.addEventListener('click', showByPriority);
+
+const botonShowByDate = document.getElementById('showByDate');
+botonShowByDate.addEventListener('click', showByDate);

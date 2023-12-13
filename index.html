@@ -3,12 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/style.css">
     <title>Lista de Tareas | Rojas G</title>
 </head>
 <body>
-    <h1>Lista de tareas!</h1>
-    <h2>By: Luis Esteban Rojas González</h2>
+    <nav>
+        <button class="navButton" id="loadList">Cargar la lista guardada</button>
+        <button class="navButton" id="createList">Crear una nueva lista</button>
+    </nav>
+    <main>
+        <section class="opcButton" id="bottons">
+            <button id="addTask">AGREGAR TAREA</button>
+            <button id="deleteTask">ELIMINAR TAREA</button>
+            <button id="showList">ORDENAR POR ID</button>
+            <button id="showByPriority">ORDENAR POR PRIORIDAD</button>
+            <button id="showByDate">ORDENAR POR FECHA</button>
+        </section>
+        <section id="formsTask">
+            <form id="assignmentTask">
+                <label for="task">Tarea:</label>
+                <textarea class="right" id="task" name="task" rows="1" cols="60"></textarea>
+                
+                <label for="priority">Prioridad (1:10):</label>
+                <input class="right" type="number" id="priority" name="priority">
+                
+                <label for="date">Fecha realización:</label>
+                <input class="right" type="date" id="date" name="date">
+                
+                
+            </form>
+        </section>
+        <section class="answer">
+            <table class="table-dark table-striped-columns">
+                <thead class="thead-dark">
+                    <tr id="trId">
+                        <th># id</th>
+                        <th>Tarea</th>
+                        <th>Prioridad</th>
+                        <th>Fecha de entrega</th>
+                    </tr>
+                </thead>
+                <tbody id="list" class="table-striped">
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <footer>
+        <div class="relleno">
+            <div></div>
+        </div>
+        <div class="text">
+            <p>--- Lista de tareas ---</p>
+            <p>By: Luis Esteban Rojas González</p>
+            <p>December 2023</p>
+        </div>
+        <div class="redes">
+            <a href="https://github.com/VisualR29" target="_blank" rel="noopener" aria-label="github"><i
+                    class="bi bi-github"></i></a>
+        </div>
+    </footer>
 <script src="./js/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

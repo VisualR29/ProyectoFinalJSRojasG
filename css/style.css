@@ -1,13 +1,110 @@
 *{
-padding: 20px;
+padding: 0px;
 margin: 0px;
 }
 
 body{
-    background-color: rgb(51, 16, 42);
+    background-color: rgb(96, 80, 110);
 }
 
-h1, h2{
+label{
     color: antiquewhite;
+    font-size: 18px;
+}
+input{
+    font-size: 14px;
+}
+
+.right{
+    color: green;
+}
+
+.wrong{
+    color: red;
+}
+
+#answer{
+    background-color: rgb(212, 212, 184);
+}
+
+/* NavBar */
+nav{
+    background-color: #343239;
+    padding: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+nav .navButton{
+    background-color: #f03d33;
+    color: #e3e1e3;
+    padding: 15px;
+    font-size: 16px;
+}
+
+/* seccion de botones */
+.opcButton{
+    display: flex;
+    justify-content: space-around;
+}
+
+.opcButton button{
+    background-color: #fbf9fb;
+    color: #343239;
+    padding: 15px;
+    font-size: 16px;
+    margin: 15px;
+} 
+
+/* seccion de tabla */
+
+.answer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+}
+
+.answer table{
+    width: 75%;
+}
+
+/* pie de pagina */
+
+footer{
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #343239;
+    height: 180px;
+}
+
+footer .text p{
+    color: #e3e1e3;
     text-align: center;
+    padding-top: 16px;
+    font-size: 18px;
+}
+
+footer .redes{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+footer .redes i{
+    font-size: 60px;
+    color: #fbf9fb;
+}
+
+footer .relleno div{
+    width: 60px;
+}
+
+/* Paleta de colores */
+.colores{
+    color: #fbf9fb;
+    color: #e3e1e3;
+    color: #666564;
+    color: #343239;
+    color: #f03d33;
 }
