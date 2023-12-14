@@ -1,16 +1,18 @@
 //Tarea como Objeto
-class Task{
+class Task {
     id;
     task;
     priority;
     date;
+    dateString;
 
 
-    constructor(id, task, priority, date) {
-    this.id = id;
-    this.task = task;
-    this.priority = priority;
-    this.date = date;
+    constructor(id, task, priority, date, dateString) {
+        this.id = id;
+        this.task = task;
+        this.priority = priority;
+        this.date = date;
+        this.dateString = dateString;
     }
 }
 
@@ -36,7 +38,7 @@ function comparateByPriority(elementA, elementB) {
 }
 
 function comparateByDate(elementA, elementB) {
-    return elementB.date - elementA.date;
+    return elementA.date - elementB.date;
 }
 
 //Llamar al localstorage
@@ -66,12 +68,12 @@ function addTask() {
     let priorityTask = document.getElementById('priority').value;
     priorityTask = parseInt(priorityTask);
     let date = document.getElementById('date').value;
-    date = new Date(date);
-    date = date.toLocaleDateString();
+    let dateString = new Date(date);
+    dateString = dateString.toLocaleDateString();
     let idTask = id;
     taskList === null && (taskList = []);
     if (taskTask && priorityTask >= 1 && priorityTask <= 10 && date) {
-        let newTask = new Task(idTask, taskTask, priorityTask, date);
+        let newTask = new Task(idTask, taskTask, priorityTask, date, dateString);
         taskList.push(newTask);
         id += 1;
         saveTaskList();
@@ -106,7 +108,7 @@ function deleteTask() {
 }
 
 function showList() {
-    const answer = document.getElementById('list');  
+    const answer = document.getElementById('list');
     answer.innerHTML = ``;
     taskList.forEach(element => {
         answer.innerHTML = answer.innerHTML +
@@ -114,7 +116,7 @@ function showList() {
                 <th>${element.id}</th>
                 <th>${element.task}</th>
                 <th>${element.priority}</th>
-                <th>${element.date}</th>
+                <th>${element.dateString}</th>
             </tr>
             `;
     });
@@ -127,11 +129,11 @@ function showByPriority() {
     answer.innerHTML = ``;
     taskListPriority.forEach(element => {
         answer.innerHTML = answer.innerHTML +
-        `<tr>
+            `<tr>
         <th>${element.id}</th>
         <th>${element.task}</th>
         <th>${element.priority}</th>
-        <th>${element.date}</th>
+        <th>${element.dateString}</th>
         </tr>
         `;
     });
@@ -148,7 +150,7 @@ function showByDate() {
                 <th>${element.id}</th>
                 <th>${element.task}</th>
                 <th>${element.priority}</th>
-                <th>${element.date}</th>
+                <th>${element.dateString}</th>
             </tr>
             `;
     });

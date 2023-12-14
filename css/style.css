@@ -23,10 +23,6 @@ input{
     color: red;
 }
 
-#answer{
-    background-color: rgb(212, 212, 184);
-}
-
 /* NavBar */
 nav{
     background-color: #343239;
@@ -66,7 +62,9 @@ nav .navButton{
 }
 
 .answer table{
+    background-color: rgb(212, 212, 184);
     width: 75%;
+    color: #343239;
 }
 
 /* pie de pagina */
