@@ -111,23 +111,39 @@ function addTask() {
 }
 
 function deleteTask() {
-    let idDelete = +prompt("Ingrese el 'id' de la tarea a eliminar");
-    let newTaskList = taskList.filter(function (list) {
-        return list.id !== idDelete;
-    });
-    if (taskList.length == newTaskList.length) {
-        alert("No se encontro tarea a eliminar");
-    } else {
-        alert("Tarea eliminada!");
-        id = 1;
-        newTaskList.forEach(element => {
-            element.id = id;
-            id++;
-        });
-    }
-    taskList = newTaskList;
-    saveTaskList();
-    showList();
+    Swal.fire({
+        title: "Ingrese el id de la tarea a eliminar",
+        input: "number",
+        inputValue: "number",
+        inputLabel: "Id a eliminar",
+        inputPlaceholder: "Ingresa el ID"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            idDelete = result.value;
+            let newTaskList = taskList.filter(function (list) {
+                return list.id != idDelete;
+            });
+            if (taskList.length == newTaskList.length) {
+                Swal.fire({
+                    title: "Id no encontrado",
+                    text: "No se encontro tarea a eliminar"
+                })
+            } else {
+                Swal.fire({
+                    title: "Tarea eliminada!"
+                })
+                id = 1;
+                newTaskList.forEach(element => {
+                    element.id = id;
+                    id++;
+                });
+            }
+            taskList = newTaskList;
+            saveTaskList();
+            showList();
+        }
+    })
+
 }
 
 function showList() {
