@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/formstyle.css">
     <title>Lista de Tareas | Rojas G</title>
 </head>
+
 <body>
     <nav>
         <button class="navButton" id="loadList">Cargar la lista guardada</button>
@@ -26,14 +29,14 @@
             <form id="assignmentTask">
                 <label for="task">Tarea:</label>
                 <textarea class="right" id="task" name="task" rows="1" cols="60"></textarea>
-                
+
                 <label for="priority">Prioridad (1:10):</label>
                 <input class="right" type="number" id="priority" name="priority" value="0" min="1" max="10">
-                
+
                 <label for="date">Fecha realización:</label>
                 <input class="right" type="date" id="date" name="date">
-                
-                
+
+
             </form>
         </section>
         <section class="answer">
@@ -66,6 +69,9 @@
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="./js/script.js"></script>
+    <script src="./js/functions.js"></script>
+    <script src="./js/task.js"></script>
+    <script src="./js/script.js"></script>
 </body>
+
 </html>
