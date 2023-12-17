@@ -77,13 +77,36 @@ function addTask() {
         taskList.push(newTask);
         id += 1;
         saveTaskList();
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-start",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+        Toast.fire({
+            icon: "success",
+            title: "Tarea creada con éxito"
+        });
+
     } else {
-        taskTask === '' && alert('Falta agrega el nombre de la tarea');
-        priorityTask > 10 && alert('Excediste el valor de prioridad');
-        priorityTask < 1 && alert('Valor incorrecto para prioridad');
-        priorityTask == '' && alert('Valor incorrecto para prioridad');
-        date === '' && alert('No olvides agregar la fecha');
+        let errMsg = "<b>Campos que se encuentran vacios</b><br>";
+        taskTask === '' && (errMsg += '-Falta agregar el nombre<br>');
+        priorityTask == '' && (errMsg += '-Falta agregar la prioridad<br>');
+        date === '' && (errMsg += '-Falta agregar la fecha<br>');
+
+        Swal.fire({
+            title: '¡Falta llenar campos!',
+            html: errMsg,
+            icon: 'error',
+            confirmButtonText: 'Cerrar'
+        })
     }
+
     showList();
 }
 
