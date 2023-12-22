@@ -1,0 +1,16 @@
+{
+  "name": "proyectofinal",
+  "version": "1.0.0",
+  "description": "mi proyecto final de js",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "esteban Rojas",
+  "license": "ISC",
+  "dependencies": {
+    "@sweetalert2/theme-borderless": "^5.0.15",
+    "luxon": "^3.4.4",
+    "sweetalert2": "^11.6.13"
+  }
+}

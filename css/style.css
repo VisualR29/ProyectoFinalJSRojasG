@@ -11,6 +11,7 @@ label{
     color: antiquewhite;
     font-size: 18px;
 }
+
 input{
     font-size: 14px;
 }
@@ -31,6 +32,7 @@ nav{
     flex-direction: row;
     justify-content: space-evenly;
 }
+
 nav .navButton{
     background-color: #f03d33;
     color: #e3e1e3;
@@ -73,14 +75,14 @@ footer{
     display: flex;
     justify-content: space-evenly;
     background-color: #343239;
-    height: 180px;
+    height: 120px;
 }
 
 footer .text p{
     color: #e3e1e3;
     text-align: center;
-    padding-top: 16px;
-    font-size: 18px;
+    padding-top: 5px;
+    font-size: 14px;
 }
 
 footer .redes{

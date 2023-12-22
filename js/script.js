@@ -9,6 +9,9 @@ botonCreateList.addEventListener('click', createList);
 const botonLoadList = document.getElementById('loadList');
 botonLoadList.addEventListener('click', loadList);
 
+const botonLoadJson = document.getElementById('loadJson');
+botonLoadJson.addEventListener('click', loadListJson);
+
 const botonAddTask = document.getElementById('addTask');
 botonAddTask.addEventListener('click', addTask);
 

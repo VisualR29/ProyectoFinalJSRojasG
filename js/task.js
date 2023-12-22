@@ -4,14 +4,14 @@ class Task {
     task;
     priority;
     date;
-    dateString;
+    complete;
 
 
-    constructor(id, task, priority, date, dateString) {
+    constructor(id, task, priority, date) {
         this.id = id;
         this.task = task;
         this.priority = priority;
         this.date = date;
-        this.dateString = dateString;
+        this.complete = false;
     }
 }

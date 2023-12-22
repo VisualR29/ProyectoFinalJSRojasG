@@ -1,0 +1,72 @@
+[
+    {
+        "id": 1,
+        "task": "Codear",
+        "priority": 3,
+        "date": "2023-12-23",
+        "complete": false
+    },
+    {
+        "id": 2,
+        "task": "Fiesta navideña",
+        "priority": 5,
+        "date": "2023-12-24",
+        "complete": false
+    },
+    {
+        "id": 3,
+        "task": "AfterClass",
+        "priority": 7,
+        "date": "2023-12-26",
+        "complete": false
+    },
+    {
+        "id": 4,
+        "task": "Cumpleaños de Rojas",
+        "priority": 10,
+        "date": "2023-12-26",
+        "complete": false
+    },
+    {
+        "id": 5,
+        "task": "Intercambio",
+        "priority": 5,
+        "date": "2023-12-31",
+        "complete": false
+    },
+    {
+        "id": 6,
+        "task": "Viaje a Santa",
+        "priority": 7,
+        "date": "2023-12-29",
+        "complete": false
+    },
+    {
+        "id": 7,
+        "task": "Reunion con Jessy",
+        "priority": 10,
+        "date": "2023-12-22",
+        "complete": false
+    },
+    {
+        "id": 8,
+        "task": "Regreso a clases",
+        "priority": 6,
+        "date": "2024-01-15",
+        "complete": false
+    },
+    {
+        "id": 9,
+        "task": "Año nuevo",
+        "priority": 1,
+        "date": "2024-01-01",
+        "complete": false
+    },
+    {
+        "id": 10,
+        "task": "Entregar primer prototipo",
+        "priority": 7,
+        "date": "2023-12-27",
+        "complete": false
+    }
+]

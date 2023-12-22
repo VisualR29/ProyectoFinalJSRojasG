@@ -1,3 +1,5 @@
+//Funciones elementales
+
 function getTaskList() {
     taskList = JSON.parse(localStorage.getItem('taskList'));
     id = JSON.parse(localStorage.getItem('id'));
@@ -24,6 +26,7 @@ function convertToDate(date) {
 }
 
 //Funciones NavBar
+
 function createList() {
     taskList = [];
     id = 1;
@@ -37,53 +40,76 @@ function loadList() {
     showList();
 }
 
+async function loadListJson() {
+    const resp = await
+        fetch("../data/defaultdata.json")
+    taskList = await resp.json();
+    id = taskList.length;
+    showList();
+    saveTaskList();
+}
 //Funciones botones
 
-function addTask() {
-    let taskTask = document.getElementById('task').value;
-    let priorityTask = document.getElementById('priority').value;
-    priorityTask = parseInt(priorityTask);
-    let date = document.getElementById('date').value;
-    let dateString = new Date(date);
-    dateString = dateString.toLocaleDateString();
-    let idTask = id;
-    taskList === null && (taskList = []);
-    if (taskTask && priorityTask >= 1 && priorityTask <= 10 && date) {
-        let newTask = new Task(idTask, taskTask, priorityTask, date, dateString);
-        taskList.push(newTask);
-        id += 1;
-        saveTaskList();
-        const Toast = Swal.mixin({
-            toast: true,
-            position: "top-start",
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-                toast.onmouseenter = Swal.stopTimer;
-                toast.onmouseleave = Swal.resumeTimer;
-            }
-        });
-        Toast.fire({
-            icon: "success",
-            title: "Tarea creada con éxito"
-        });
+async function addTask() {
+    const { value: formValues } = await Swal.fire({
+        title: "Agregar tarea",
+        html: `<form id="assignmentTask">
+                <label for="task">Tarea:</label>
+                <textarea class="right" id="task" name="task" rows="1" cols="60"></textarea>
 
-    } else {
-        let errMsg = "<b>Campos que se encuentran vacios</b><br>";
-        taskTask === '' && (errMsg += '-Falta agregar el nombre<br>');
-        priorityTask == '' && (errMsg += '-Falta agregar la prioridad<br>');
-        date === '' && (errMsg += '-Falta agregar la fecha<br>');
+                <label for="priority">Prioridad (1:10):</label>
+                <input class="right" type="number" id="priority" name="priority" value="0" min="1" max="10">
 
-        Swal.fire({
-            title: '¡Falta llenar campos!',
-            html: errMsg,
-            icon: 'error',
-            confirmButtonText: 'Cerrar'
-        })
+                <label for="date">Fecha realización:</label>
+                <input class="right" type="date" id="date" name="date">
+            </form>`,
+        focusConfirm: false,
+        preConfirm: () => {
+            return [
+                document.getElementById("task").value,
+                document.getElementById("priority").value,
+                document.getElementById("date").value
+            ];
+        }
+    });
+    if (formValues) {
+        Swal.fire(JSON.stringify(formValues));
+        let taskTask = formValues[0];
+        let priorityTask = formValues[1];
+        priorityTask = parseInt(priorityTask);
+        let date = formValues[2];
+        let idTask = id;
+        taskList === null && (taskList = []);
+        if (taskTask && priorityTask >= 1 && priorityTask <= 10 && date) {
+            let newTask = new Task(idTask, taskTask, priorityTask, date);
+            taskList.push(newTask);
+            id += 1;
+            saveTaskList();
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-start",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true
+            });
+            Toast.fire({
+                icon: "success",
+                title: "Tarea creada con éxito"
+            });
+        } else {
+            let errMsg = "<b>Campos que se encuentran vacios</b><br>";
+            taskTask === '' && (errMsg += '-Falta agregar el nombre<br>');
+            priorityTask == '' && (errMsg += '-Falta agregar la prioridad<br>');
+            date === '' && (errMsg += '-Falta agregar la fecha<br>');
+            Swal.fire({
+                title: '¡Falta llenar campos!',
+                html: errMsg,
+                icon: 'error',
+                confirmButtonText: 'Cerrar'
+            })
+        }
+        showList();
     }
-
-    showList();
 }
 
 function deleteTask() {
@@ -119,7 +145,6 @@ function deleteTask() {
             showList();
         }
     })
-
 }
 
 function showList() {
@@ -131,7 +156,7 @@ function showList() {
                 <th>${element.id}</th>
                 <th>${element.task}</th>
                 <th>${element.priority}</th>
-                <th>${element.dateString}</th>
+                <th>${element.date}</th>
             </tr>
             `;
     });
@@ -148,7 +173,7 @@ function showByPriority() {
         <th>${element.id}</th>
         <th>${element.task}</th>
         <th>${element.priority}</th>
-        <th>${element.dateString}</th>
+        <th>${element.date}</th>
         </tr>
         `;
     });
@@ -167,7 +192,7 @@ function showByDate() {
                 <th>${element.id}</th>
                 <th>${element.task}</th>
                 <th>${element.priority}</th>
-                <th>${element.dateString}</th>
+                <th>${element.date}</th>
             </tr>
             `;
     });
