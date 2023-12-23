@@ -55,13 +55,13 @@ async function addTask() {
         title: "Agregar tarea",
         html: `<form id="assignmentTask">
                 <label for="task">Tarea:</label>
-                <textarea class="right" id="task" name="task" rows="1" cols="60"></textarea>
+                <textarea class="right" id="task" name="task" rows="1" cols="60"></textarea><br>
 
                 <label for="priority">Prioridad (1:10):</label>
-                <input class="right" type="number" id="priority" name="priority" value="0" min="1" max="10">
+                <input class="right" type="number" id="priority" name="priority" value="0" min="1" max="10"><br>
 
                 <label for="date">Fecha realización:</label>
-                <input class="right" type="date" id="date" name="date">
+                <input class="right" type="date" id="date" name="date"><br>
             </form>`,
         focusConfirm: false,
         preConfirm: () => {

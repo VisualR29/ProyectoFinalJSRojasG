@@ -1,31 +1,59 @@
-*{
-padding: 0px;
-margin: 0px;
+/*?Generales*/
+* {
+    padding: 0px;
+    margin: 0px;
 }
 
-body{
-    background-color: rgb(96, 80, 110);
+/*?Colores*/
+#colores {
+    color: #fbf9fb;
+    color: #e3e1e3;
+    color: #666564;
+    color: #343239;
+    color: #f03d33;
+    color: #5f2c82;
+    color: #55608f;
+    color: #49a09d;
 }
 
-label{
-    color: antiquewhite;
+/*?General*/
+body {
+    background: linear-gradient(45deg, #49a09d, #5f2c82);
+    font-family: sans-serif;
+    font-weight: 100;
+}
+
+/*?AlertForm*/
+
+label {
+    color: #343239;
     font-size: 18px;
+    left: 10%;
 }
 
-input{
-    font-size: 14px;
+textarea {
+    font-size: 16px;
+    width: 60%;
+    left: 10%;
 }
 
-.right{
+input {
+    font-size: 16px;
+    width: 20%;
+    left: 10%;
+}
+
+.right {
     color: green;
 }
 
-.wrong{
+.wrong {
     color: red;
 }
 
-/* NavBar */
-nav{
+/*?Navbar*/
+
+nav {
     background-color: #343239;
     padding: 25px;
     display: flex;
@@ -33,78 +61,86 @@ nav{
     justify-content: space-evenly;
 }
 
-nav .navButton{
-    background-color: #f03d33;
+nav .navButton {
+    background-color: #5f2c82;
     color: #e3e1e3;
     padding: 15px;
     font-size: 16px;
 }
 
-/* seccion de botones */
-.opcButton{
+/*?BotonesFuncionales*/
+
+.opcButton {
     display: flex;
     justify-content: space-around;
 }
 
-.opcButton button{
+.opcButton button {
     background-color: #fbf9fb;
     color: #343239;
     padding: 15px;
     font-size: 16px;
     margin: 15px;
-} 
+}
 
-/* seccion de tabla */
-
-.answer{
+/*?Tabla*/
+.tab {
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 20px;
 }
 
-.answer table{
-    background-color: rgb(212, 212, 184);
+table {
     width: 75%;
-    color: #343239;
+    border-collapse: collapse;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-/* pie de pagina */
+th,
+td {
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
 
-footer{
+thead th {
+    background-color: #55608f;
+    text-align: left;
+}
+
+tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+/*?Footer*/
+
+footer {
     display: flex;
     justify-content: space-evenly;
     background-color: #343239;
     height: 120px;
 }
 
-footer .text p{
+footer .text p {
     color: #e3e1e3;
     text-align: center;
     padding-top: 5px;
     font-size: 14px;
 }
 
-footer .redes{
+footer .redes {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-footer .redes i{
+footer .redes i {
     font-size: 60px;
     color: #fbf9fb;
 }
 
-footer .relleno div{
+footer .relleno div {
     width: 60px;
-}
-
-/* Paleta de colores */
-.colores{
-    color: #fbf9fb;
-    color: #e3e1e3;
-    color: #666564;
-    color: #343239;
-    color: #f03d33;
 }
