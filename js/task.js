@@ -4,7 +4,6 @@ class Task {
     task;
     priority;
     date;
-    complete;
 
 
     constructor(id, task, priority, date) {
@@ -12,6 +11,5 @@ class Task {
         this.task = task;
         this.priority = priority;
         this.date = date;
-        this.complete = false;
     }
 }

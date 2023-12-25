@@ -44,7 +44,7 @@ async function loadListJson() {
     const resp = await
         fetch("../data/defaultdata.json")
     taskList = await resp.json();
-    id = taskList.length;
+    id = taskList.length + 1;
     showList();
     saveTaskList();
 }
@@ -156,9 +156,7 @@ function showList() {
                 <th>${element.id}</th>
                 <th>${element.task}</th>
                 <th>${element.priority}</th>
-                <th>${element.date}</th>
-            </tr>
-            `;
+                <th>${element.date}</th>`;
     });
 }
 
