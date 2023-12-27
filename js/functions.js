@@ -52,8 +52,7 @@ async function loadListJson() {
         icon: "info",
         title: "Cargando lista..."
     });
-    const resp = await
-        fetch("../data/defaultdata.json")
+    const resp = await fetch("../data/defaultdata.json")
     taskList = await resp.json();
     id = taskList.length + 1;
     setTimeout(() => {
