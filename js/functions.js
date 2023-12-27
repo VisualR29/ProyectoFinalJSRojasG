@@ -41,6 +41,19 @@ function loadList() {
 }
 
 async function loadListJson() {
+    setTimeout(() => {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-start",
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true
+        });
+        Toast.fire({
+            icon: "info",
+            title: "Cargando lista..."
+        });
+    }, 500);
     const resp = await
         fetch("../data/defaultdata.json")
     taskList = await resp.json();
@@ -114,11 +127,11 @@ async function addTask() {
 
 function deleteTask() {
     Swal.fire({
-        title: "Ingrese el id de la tarea a eliminar",
+        title: "Ingrese id",
         input: "number",
         inputValue: "number",
-        inputLabel: "Id a eliminar",
-        inputPlaceholder: "Ingresa el ID",
+        inputLabel: "Ingrese el id de la tarea a eliminar",
+        inputPlaceholder: "ID",
     }).then((result) => {
         if (result.isConfirmed) {
             idDelete = result.value;
@@ -126,14 +139,29 @@ function deleteTask() {
                 return list.id != idDelete;
             });
             if (taskList.length == newTaskList.length) {
-                Swal.fire({
-                    title: "Id no encontrado",
-                    text: "No se encontro tarea a eliminar"
-                })
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-start",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true
+                });
+                Toast.fire({
+                    icon: "warning",
+                    title: "No se encontro la tarea"
+                });
             } else {
-                Swal.fire({
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-start",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true
+                });
+                Toast.fire({
+                    icon: "success",
                     title: "Tarea eliminada!"
-                })
+                });
                 id = 1;
                 newTaskList.forEach(element => {
                     element.id = id;
