@@ -41,25 +41,25 @@ function loadList() {
 }
 
 async function loadListJson() {
-    setTimeout(() => {
-        const Toast = Swal.mixin({
-            toast: true,
-            position: "top-start",
-            showConfirmButton: false,
-            timer: 2000,
-            timerProgressBar: true
-        });
-        Toast.fire({
-            icon: "info",
-            title: "Cargando lista..."
-        });
-    }, 500);
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-start",
+        showConfirmButton: false,
+        timer: 1500,
+        timerProgressBar: true
+    });
+    Toast.fire({
+        icon: "info",
+        title: "Cargando lista..."
+    });
     const resp = await
         fetch("../data/defaultdata.json")
     taskList = await resp.json();
     id = taskList.length + 1;
-    showList();
-    saveTaskList();
+    setTimeout(() => {
+        showList();
+        saveTaskList();
+    }, 1500);
 }
 //Funciones botones
 
