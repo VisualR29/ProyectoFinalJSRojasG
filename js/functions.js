@@ -52,13 +52,26 @@ async function loadListJson() {
         icon: "info",
         title: "Cargando lista..."
     });
-    const resp = await fetch("../data/defaultdata.json")
+    const resp = await fetch('../data/defaultdata.json')
     taskList = await resp.json();
     id = taskList.length + 1;
     setTimeout(() => {
         showList();
         saveTaskList();
     }, 1500);
+}
+
+async function loadListJson2() {
+    fetch('../data/defaultdata.json')
+        .then(function (res) {
+            return res.json();
+        })
+        .then(function (data) {
+            taskList = data;
+            id = taskList.length + 1;
+            showList();
+            saveTaskList();
+        })
 }
 //Funciones botones
 
