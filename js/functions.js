@@ -60,19 +60,6 @@ async function loadListJson() {
         saveTaskList();
     }, 1500);
 }
-
-async function loadListJson2() {
-    fetch('../data/defaultdata.json')
-        .then(function (res) {
-            return res.json();
-        })
-        .then(function (data) {
-            taskList = data;
-            id = taskList.length + 1;
-            showList();
-            saveTaskList();
-        })
-}
 //Funciones botones
 
 async function addTask() {
@@ -103,6 +90,7 @@ async function addTask() {
         let priorityTask = formValues[1];
         priorityTask = parseInt(priorityTask);
         let date = formValues[2];
+        id == null && (id = 1);
         let idTask = id;
         taskList === null && (taskList = []);
         if (taskTask && priorityTask >= 1 && priorityTask <= 10 && date) {
